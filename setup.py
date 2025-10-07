@@ -5,8 +5,8 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="colorterminal",
-    version="1.0.0",
+    name="terminal-colorize",
+    version="1.0.1",
     author="Mmohamed Sajith",
     author_email="mmssajith@gmail.com",
     description="A simple library for colored terminal output using ANSI escape codes",

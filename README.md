@@ -15,7 +15,7 @@ A simple Python library for printing colored and styled text to the terminal usi
 Install via pip:
 
 ```bash
-pip install colorterminal
+pip install terminal-colorize
 ```
 
 Or install from source:

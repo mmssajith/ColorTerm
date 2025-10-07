@@ -41,6 +41,16 @@ class Colors:
     BG_CYAN = '\033[46m'
     BG_WHITE = '\033[47m'
 
+    # Bright background colors
+    BG_BRIGHT_BLACK = '\033[100m'
+    BG_BRIGHT_RED = '\033[101m'
+    BG_BRIGHT_GREEN = '\033[102m'
+    BG_BRIGHT_YELLOW = '\033[103m'
+    BG_BRIGHT_BLUE = '\033[104m'
+    BG_BRIGHT_MAGENTA = '\033[105m'
+    BG_BRIGHT_CYAN = '\033[106m'
+    BG_BRIGHT_WHITE = '\033[107m'
+
 
 class Styles:
     """ANSI style codes for terminal output."""
@@ -66,6 +76,11 @@ def stylize(text, *style_codes):
 
 
 # Basic color print functions
+def print_black(text, **kwargs):
+    """Print text in black."""
+    print(colorize(text, Colors.BLACK), **kwargs)
+
+
 def print_red(text, **kwargs):
     """Print text in red."""
     print(colorize(text, Colors.RED), **kwargs)
@@ -102,6 +117,11 @@ def print_white(text, **kwargs):
 
 
 # Bright color print functions
+def print_bright_black(text, **kwargs):
+    """Print text in bright black (gray)."""
+    print(colorize(text, Colors.BRIGHT_BLACK), **kwargs)
+
+
 def print_bright_red(text, **kwargs):
     """Print text in bright red."""
     print(colorize(text, Colors.BRIGHT_RED), **kwargs)
@@ -120,6 +140,21 @@ def print_bright_yellow(text, **kwargs):
 def print_bright_blue(text, **kwargs):
     """Print text in bright blue."""
     print(colorize(text, Colors.BRIGHT_BLUE), **kwargs)
+
+
+def print_bright_magenta(text, **kwargs):
+    """Print text in bright magenta."""
+    print(colorize(text, Colors.BRIGHT_MAGENTA), **kwargs)
+
+
+def print_bright_cyan(text, **kwargs):
+    """Print text in bright cyan."""
+    print(colorize(text, Colors.BRIGHT_CYAN), **kwargs)
+
+
+def print_bright_white(text, **kwargs):
+    """Print text in bright white."""
+    print(colorize(text, Colors.BRIGHT_WHITE), **kwargs)
 
 
 # Semantic/contextual print functions
