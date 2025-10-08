@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "terminal-colorize"
-version = "2.0.0"
+version = "2.0.1"
 description = "A comprehensive library for colored terminal output, progress bars, tables, and shapes using ANSI escape codes"
 readme = "README.md"
 requires-python = ">=3.6"

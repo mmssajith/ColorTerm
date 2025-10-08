@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="terminal-colorize",
-    version="2.0.0",
+    version="2.0.1",
     author="Mmohamed Sajith",
     author_email="mmssajith@gmail.com",
     description="A comprehensive library for colored terminal output, progress bars, tables, and shapes using ANSI escape codes",

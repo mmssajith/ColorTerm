@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.1] - 2024-10-08
+
+### Changed
+- Updated documentation and examples
+- Improved README with comprehensive feature descriptions
+- Enhanced package metadata for better PyPI presentation
+
 ## [2.0.0] - 2024-10-08
 
 ### Added

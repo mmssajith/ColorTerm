@@ -8,7 +8,7 @@ This library provides easy-to-use classes and functions for:
 - Shape drawing (lines, rectangles, circles, triangles, diamonds, boxes)
 """
 
-__version__ = "2.0.0"
+__version__ = "2.0.1"
 
 __all__ = [
     # Core utilities
