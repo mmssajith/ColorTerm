@@ -8,7 +8,7 @@ This library provides easy-to-use classes and functions for:
 - Shape drawing (lines, rectangles, circles, triangles, diamonds, boxes)
 """
 
-__version__ = "2.0.1"
+__version__ = "2.0.2"
 
 __all__ = [
     # Core utilities
@@ -37,6 +37,9 @@ __all__ = [
     "Triangle",
     "Diamond",
     "Box",
+    # ASCII Art
+    "ImageToASCII",
+    "TextArt",
 ]
 
 
@@ -111,19 +114,22 @@ def stylize(text, *style_codes):
     return f"{styles}{text}{Colors.RESET}"
 
 
+# Import ASCII art classes
+from .ascii_art import ImageToASCII, TextArt
+
 # Import class-based interfaces
-from .printers import Printer, StylePrinter, SemanticPrinter
+from .printers import Printer, SemanticPrinter, StylePrinter
 
 # Import progress bar classes
 from .progress_bars import (
-    ProgressBar,
     AnimatedProgressBar,
     MultiProgressBar,
+    ProgressBar,
     SpinnerProgressBar,
 )
 
-# Import table and grid classes
-from .tables import Table, ColoredTable, Grid
-
 # Import shape classes from shapes module
-from .shapes import Shape, Line, Rectangle, Circle, Triangle, Diamond, Box
+from .shapes import Box, Circle, Diamond, Line, Rectangle, Shape, Triangle
+
+# Import table and grid classes
+from .tables import ColoredTable, Grid, Table

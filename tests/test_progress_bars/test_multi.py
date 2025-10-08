@@ -3,7 +3,8 @@
 import unittest
 from io import StringIO
 from unittest.mock import patch
-from colorterminal import MultiProgressBar, Colors
+
+from colorterminal import Colors, MultiProgressBar
 
 
 class TestMultiProgressBar(unittest.TestCase):
@@ -39,11 +40,7 @@ class TestMultiProgressBar(unittest.TestCase):
         """Test adding bar with custom settings."""
         multi = MultiProgressBar()
         multi.add_bar(
-            "task1",
-            total=100,
-            width=50,
-            color_code=Colors.BLUE,
-            fill_char="#"
+            "task1", total=100, width=50, color_code=Colors.BLUE, fill_char="#"
         )
 
         bar = multi.get_bar("task1")
@@ -52,7 +49,7 @@ class TestMultiProgressBar(unittest.TestCase):
         self.assertEqual(bar.color_code, Colors.BLUE)
         self.assertEqual(bar.fill_char, "#")
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_update_bar(self, mock_stdout):
         """Test updating a specific bar."""
         multi = MultiProgressBar()
@@ -83,7 +80,7 @@ class TestMultiProgressBar(unittest.TestCase):
         bar = multi.get_bar("nonexistent")
         self.assertIsNone(bar)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_display_all(self, mock_stdout):
         """Test displaying all progress bars."""
         multi = MultiProgressBar()
@@ -99,7 +96,7 @@ class TestMultiProgressBar(unittest.TestCase):
         self.assertIn("task1:", output)
         self.assertIn("task2:", output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_labels_order_preserved(self, mock_stdout):
         """Test that labels are displayed in order added."""
         multi = MultiProgressBar()
@@ -109,7 +106,7 @@ class TestMultiProgressBar(unittest.TestCase):
 
         self.assertEqual(multi.labels, ["first", "second", "third"])
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_multiple_updates(self, mock_stdout):
         """Test multiple updates to same bar."""
         multi = MultiProgressBar()
@@ -124,7 +121,7 @@ class TestMultiProgressBar(unittest.TestCase):
         multi.update("task1", 100)
         self.assertEqual(multi.get_bar("task1").current, 100)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_bar_prefix_includes_label(self, mock_stdout):
         """Test that bar prefix includes the label."""
         multi = MultiProgressBar()

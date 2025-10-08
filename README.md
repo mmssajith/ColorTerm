@@ -1,5 +1,10 @@
 # ColorTerm 🎨
 
+[![PyPI version](https://badge.fury.io/py/terminal-colorize.svg)](https://badge.fury.io/py/terminal-colorize)
+[![Downloads](https://pepy.tech/badge/terminal-colorize)](https://pepy.tech/project/terminal-colorize)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+
 A comprehensive Python library for colored terminal output, progress bars, tables, and shapes using ANSI escape codes. Perfect for making your CLI applications more readable, interactive, and user-friendly!
 
 ## Features
@@ -306,6 +311,37 @@ print(colorize("Custom text", Colors.MAGENTA))
 print(stylize("Styled text", Styles.BOLD, Styles.UNDERLINE, Colors.CYAN))
 ```
 
+## Comparison with Similar Libraries
+
+| Feature | ColorTerm | Colorama | Rich | Termcolor |
+|---------|-----------|----------|------|-----------|
+| **Basic Colors** | ✅ 16 colors | ✅ 8 colors | ✅ 256 colors | ✅ 8 colors |
+| **Text Styles** | ✅ Full support | ✅ Basic | ✅ Full support | ✅ Basic |
+| **Progress Bars** | ✅ Multiple types | ❌ | ✅ Advanced | ❌ |
+| **Animated Progress** | ✅ | ❌ | ✅ | ❌ |
+| **Multi Progress** | ✅ | ❌ | ✅ | ❌ |
+| **Tables** | ✅ Multiple styles | ❌ | ✅ Advanced | ❌ |
+| **Shapes/Drawing** | ✅ 6+ shapes | ❌ | ✅ Limited | ❌ |
+| **Semantic Printers** | ✅ With icons | ❌ | ✅ | ❌ |
+| **Border Styles** | ✅ 5 styles | ❌ | ✅ | ❌ |
+| **No Dependencies** | ✅ | ✅ | ❌ (Pygments, etc.) | ✅ |
+| **Python 3.6+** | ✅ | ✅ | ✅ 3.7+ | ✅ |
+| **Windows Support** | ✅ | ✅ | ✅ | ✅ |
+
+### When to Use ColorTerm
+
+- ✅ Need progress bars, tables, and shapes in one package
+- ✅ Want zero external dependencies
+- ✅ Building CLI dashboards and TUIs
+- ✅ Need simple API with rich features
+- ✅ Want animated progress indicators
+
+### When to Use Alternatives
+
+- **Colorama**: Simple cross-platform color support only
+- **Rich**: Need advanced layouts, syntax highlighting, or markdown rendering
+- **Termcolor**: Minimal color-only solution
+
 ## Compatibility
 
 - ✅ Linux
@@ -314,7 +350,7 @@ print(stylize("Styled text", Styles.BOLD, Styles.UNDERLINE, Colors.CYAN))
 
 ## Requirements
 
-- Python 3.6+
+- Python 3.8+
 - No external dependencies
 
 ## License

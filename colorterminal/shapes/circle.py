@@ -2,8 +2,8 @@
 Circle shape for drawing circles in the terminal.
 """
 
-from .base import Shape
 from .. import Colors, colorize
+from .base import Shape
 
 
 class Circle(Shape):

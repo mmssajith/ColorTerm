@@ -3,7 +3,8 @@
 import unittest
 from io import StringIO
 from unittest.mock import patch
-from colorterminal import Table, Colors
+
+from colorterminal import Colors, Table
 
 
 class TestTable(unittest.TestCase):
@@ -23,7 +24,7 @@ class TestTable(unittest.TestCase):
             style="heavy",
             color_code=Colors.BLUE,
             header_color=Colors.YELLOW,
-            padding=2
+            padding=2,
         )
         self.assertEqual(table.style, "heavy")
         self.assertEqual(table.color_code, Colors.BLUE)
@@ -53,11 +54,7 @@ class TestTable(unittest.TestCase):
     def test_add_multiple_rows(self):
         """Test adding multiple rows."""
         table = Table(headers=["Name", "Age"])
-        table.add_rows([
-            ["Alice", 30],
-            ["Bob", 25],
-            ["Charlie", 35]
-        ])
+        table.add_rows([["Alice", 30], ["Bob", 25], ["Charlie", 35]])
         self.assertEqual(len(table.rows), 3)
 
     def test_clear_rows(self):
@@ -77,7 +74,7 @@ class TestTable(unittest.TestCase):
         self.assertGreater(table.col_widths[0], len("Name"))
         self.assertEqual(table.col_widths[0], len("VeryLongName"))
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_table_display(self, mock_stdout):
         """Test table display."""
         table = Table(headers=["Name", "Age"])
@@ -88,7 +85,7 @@ class TestTable(unittest.TestCase):
         self.assertIn("Age", output)
         self.assertIn("Alice", output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_empty_table_display(self, mock_stdout):
         """Test displaying empty table does nothing."""
         table = Table()
@@ -96,7 +93,7 @@ class TestTable(unittest.TestCase):
         output = mock_stdout.getvalue()
         self.assertEqual(output, "")
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_light_style_borders(self, mock_stdout):
         """Test light style border characters."""
         table = Table(headers=["Col1"], style="light")
@@ -105,7 +102,7 @@ class TestTable(unittest.TestCase):
         self.assertIn("┌", output)
         self.assertIn("└", output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_heavy_style_borders(self, mock_stdout):
         """Test heavy style border characters."""
         table = Table(headers=["Col1"], style="heavy")
@@ -114,7 +111,7 @@ class TestTable(unittest.TestCase):
         self.assertIn("┏", output)
         self.assertIn("┗", output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_ascii_style_borders(self, mock_stdout):
         """Test ASCII style border characters."""
         table = Table(headers=["Col1"], style="ascii")
@@ -149,13 +146,17 @@ class TestTable(unittest.TestCase):
 
     def test_custom_alignment(self):
         """Test custom alignment per column."""
-        table = Table(headers=["Col1", "Col2", "Col3"], alignment=["left", "center", "right"])
+        table = Table(
+            headers=["Col1", "Col2", "Col3"], alignment=["left", "center", "right"]
+        )
         self.assertEqual(table.alignment, ["left", "center", "right"])
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_color_codes_applied(self, mock_stdout):
         """Test that color codes are applied."""
-        table = Table(headers=["Name"], color_code=Colors.RED, header_color=Colors.GREEN)
+        table = Table(
+            headers=["Name"], color_code=Colors.RED, header_color=Colors.GREEN
+        )
         table.display()
         output = mock_stdout.getvalue()
         self.assertIn(Colors.RED, output)

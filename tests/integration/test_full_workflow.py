@@ -3,19 +3,33 @@
 import unittest
 from io import StringIO
 from unittest.mock import patch
+
 from colorterminal import (
-    Printer, StylePrinter, SemanticPrinter,
-    ProgressBar, AnimatedProgressBar, MultiProgressBar, SpinnerProgressBar,
-    Table, ColoredTable, Grid,
-    Line, Rectangle, Circle, Triangle, Diamond, Box,
-    Colors, Styles
+    AnimatedProgressBar,
+    Box,
+    Circle,
+    ColoredTable,
+    Colors,
+    Diamond,
+    Grid,
+    Line,
+    MultiProgressBar,
+    Printer,
+    ProgressBar,
+    Rectangle,
+    SemanticPrinter,
+    SpinnerProgressBar,
+    StylePrinter,
+    Styles,
+    Table,
+    Triangle,
 )
 
 
 class TestFullWorkflow(unittest.TestCase):
     """Test complete ColorTerm workflows."""
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_combined_features(self, mock_stdout):
         """Test using multiple features together."""
         # Test printers together
@@ -31,7 +45,7 @@ class TestFullWorkflow(unittest.TestCase):
         self.assertIn(Styles.BOLD, output)
         self.assertIn(Colors.GREEN, output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_table_and_shapes_together(self, mock_stdout):
         """Test combining tables and shapes."""
         # Create and display a table
@@ -49,7 +63,7 @@ class TestFullWorkflow(unittest.TestCase):
         self.assertIn("Status", output)
         self.assertIn("Summary", output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_progress_bars_workflow(self, mock_stdout):
         """Test progress bar workflow."""
         # Create multiple progress bars
@@ -67,7 +81,7 @@ class TestFullWorkflow(unittest.TestCase):
         self.assertIn("Upload", output)
         self.assertIn("Progress Status", output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_colored_table_with_semantic_messages(self, mock_stdout):
         """Test colored table with semantic messages."""
         SemanticPrinter.info("Creating report...")
@@ -85,7 +99,7 @@ class TestFullWorkflow(unittest.TestCase):
         self.assertIn("Alice", output)
         self.assertIn("Report created successfully", output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_shapes_gallery(self, mock_stdout):
         """Test creating a gallery of shapes."""
         shapes = [
@@ -104,7 +118,7 @@ class TestFullWorkflow(unittest.TestCase):
         # Check for ANSI codes
         self.assertIn(Colors.RESET, output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_complex_rendering(self, mock_stdout):
         """Test complex rendering scenarios."""
         # Title
@@ -118,7 +132,7 @@ class TestFullWorkflow(unittest.TestCase):
         # Statistics table
         table = Table(
             headers=["Service", "Uptime", "Requests"],
-            alignment=["left", "center", "right"]
+            alignment=["left", "center", "right"],
         )
         table.add_row(["API Gateway", "99.9%", "1,234,567"])
         table.add_row(["Database", "100%", "987,654"])
@@ -135,7 +149,7 @@ class TestFullWorkflow(unittest.TestCase):
         self.assertIn("API Gateway", output)
         self.assertIn("Summary", output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_grid_with_different_content(self, mock_stdout):
         """Test grid with various content types."""
         grid = Grid(columns=3, cell_width=15, cell_height=2, style="rounded")
@@ -154,7 +168,7 @@ class TestFullWorkflow(unittest.TestCase):
         self.assertIn("Multi", output)
         self.assertIn("Item 3", output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_all_printer_types(self, mock_stdout):
         """Test all printer types in sequence."""
         # Base printers
@@ -178,7 +192,7 @@ class TestFullWorkflow(unittest.TestCase):
         self.assertIn("Bold text", output)
         self.assertIn("Success message", output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_all_shape_types(self, mock_stdout):
         """Test all shape types."""
         shapes = {
@@ -187,17 +201,17 @@ class TestFullWorkflow(unittest.TestCase):
             "circle": Circle(radius=3),
             "triangle": Triangle(height=3),
             "diamond": Diamond(size=3),
-            "box": Box(width=10, height=2)
+            "box": Box(width=10, height=2),
         }
 
-        for name, shape in shapes.items():
+        for shape in shapes.values():
             shape.draw()
 
         output = mock_stdout.getvalue()
         # All shapes should produce some output
         self.assertGreater(len(output), 100)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_all_table_types(self, mock_stdout):
         """Test all table types."""
         # Standard table
@@ -221,8 +235,8 @@ class TestFullWorkflow(unittest.TestCase):
         self.assertIn("Name", output)
         self.assertIn("Cell 1", output)
 
-    @patch('sys.stdout', new_callable=StringIO)
-    @patch('time.sleep')
+    @patch("sys.stdout", new_callable=StringIO)
+    @patch("time.sleep")
     def test_progress_bar_types(self, mock_sleep, mock_stdout):
         """Test different progress bar types."""
         # Basic progress bar
@@ -263,7 +277,7 @@ class TestFullWorkflow(unittest.TestCase):
         self.assertIsNotNone(Styles.UNDERLINE)
         self.assertIsNotNone(Styles.ITALIC)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_realistic_dashboard_scenario(self, mock_stdout):
         """Test a realistic dashboard scenario."""
         # Header

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Basic example demonstrating ColorTerm features."""
 
-from colorterminal import Printer, StylePrinter, SemanticPrinter, Colors, Styles
+from colorterminal import Printer, SemanticPrinter, StylePrinter
 
 
 def main():

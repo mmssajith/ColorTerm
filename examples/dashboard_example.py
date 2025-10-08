@@ -4,10 +4,10 @@
 from colorterminal import (
     Box,
     ColoredTable,
+    Colors,
     MultiProgressBar,
     SemanticPrinter,
     StylePrinter,
-    Colors
 )
 
 
@@ -50,7 +50,9 @@ def main():
     multi.display_all()
 
     # Footer
-    Box(width=60, height=1, style="light", title="Last Updated: 2024-10-08 14:30:00").draw()
+    Box(
+        width=60, height=1, style="light", title="Last Updated: 2024-10-08 14:30:00"
+    ).draw()
     print()
 
 

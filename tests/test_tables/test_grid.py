@@ -3,7 +3,8 @@
 import unittest
 from io import StringIO
 from unittest.mock import patch
-from colorterminal import Grid, Colors
+
+from colorterminal import Colors, Grid
 
 
 class TestGrid(unittest.TestCase):
@@ -24,7 +25,7 @@ class TestGrid(unittest.TestCase):
             cell_width=15,
             cell_height=2,
             style="heavy",
-            color_code=Colors.BLUE
+            color_code=Colors.BLUE,
         )
         self.assertEqual(grid.columns, 4)
         self.assertEqual(grid.cell_width, 15)
@@ -54,7 +55,7 @@ class TestGrid(unittest.TestCase):
         grid.add_cell("Cell 3")
         self.assertEqual(len(grid.cells), 3)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_grid_display_empty(self, mock_stdout):
         """Test displaying empty grid does nothing."""
         grid = Grid(columns=2)
@@ -62,7 +63,7 @@ class TestGrid(unittest.TestCase):
         output = mock_stdout.getvalue()
         self.assertEqual(output, "")
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_grid_display_with_cells(self, mock_stdout):
         """Test grid display with cells."""
         grid = Grid(columns=2, cell_width=10, cell_height=2)
@@ -73,7 +74,7 @@ class TestGrid(unittest.TestCase):
         self.assertIn("Cell 1", output)
         self.assertIn("Cell 2", output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_grid_with_light_style(self, mock_stdout):
         """Test grid with light style borders."""
         grid = Grid(columns=2, style="light")
@@ -83,7 +84,7 @@ class TestGrid(unittest.TestCase):
         self.assertIn("┌", output)
         self.assertIn("└", output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_grid_with_heavy_style(self, mock_stdout):
         """Test grid with heavy style borders."""
         grid = Grid(columns=2, style="heavy")
@@ -98,19 +99,19 @@ class TestGrid(unittest.TestCase):
         with self.assertRaises(ValueError):
             Grid(columns=2, style="invalid_style")
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_grid_multiple_rows(self, mock_stdout):
         """Test grid with multiple rows."""
         grid = Grid(columns=2, cell_width=10, cell_height=2)
         for i in range(5):
-            grid.add_cell(f"Cell {i+1}")
+            grid.add_cell(f"Cell {i + 1}")
         grid.display()
         output = mock_stdout.getvalue()
         # Should create 3 rows (5 cells / 2 columns = 2.5 rounds up to 3)
         for i in range(1, 6):
             self.assertIn(f"Cell {i}", output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_grid_color_applied(self, mock_stdout):
         """Test that color code is applied to grid."""
         grid = Grid(columns=2, color_code=Colors.RED)
@@ -125,7 +126,7 @@ class TestGrid(unittest.TestCase):
         grid = Grid(columns=2, style="HEAVY")
         self.assertEqual(grid.style, "heavy")
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_grid_cell_truncation(self, mock_stdout):
         """Test that long cell content is truncated."""
         grid = Grid(columns=1, cell_width=5, cell_height=1)
@@ -135,7 +136,7 @@ class TestGrid(unittest.TestCase):
         # Should only show first 5 characters
         self.assertIn("This ", output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_grid_multiline_cell(self, mock_stdout):
         """Test grid with multiline cell content."""
         grid = Grid(columns=1, cell_width=10, cell_height=3)

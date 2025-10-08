@@ -2,8 +2,8 @@
 Diamond shape for drawing diamonds in the terminal.
 """
 
-from .base import Shape
 from .. import Colors, colorize
+from .base import Shape
 
 
 class Diamond(Shape):

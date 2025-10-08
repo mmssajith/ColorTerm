@@ -2,8 +2,8 @@
 Grid class for simple grid layouts.
 """
 
-from .base import Table
 from .. import Colors, colorize
+from .base import Table
 
 
 class Grid:

@@ -3,6 +3,7 @@ SpinnerProgressBar class for progress bars with spinner animations.
 """
 
 import sys
+
 from .base import ProgressBar
 
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Example demonstrating table functionality."""
 
-from colorterminal import Table, ColoredTable, Grid, Colors
+from colorterminal import ColoredTable, Colors, Grid, Table
 
 
 def main():
@@ -18,8 +18,7 @@ def main():
     # Table with alignment
     print("\nTable with Alignment:")
     table = Table(
-        headers=["Item", "Price", "Quantity"],
-        alignment=["left", "right", "center"]
+        headers=["Item", "Price", "Quantity"], alignment=["left", "right", "center"]
     )
     table.add_row(["Laptop", "$999", "2"])
     table.add_row(["Mouse", "$25", "10"])

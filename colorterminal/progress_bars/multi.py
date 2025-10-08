@@ -2,8 +2,8 @@
 MultiProgressBar class for managing multiple progress bars.
 """
 
-from .base import ProgressBar
 from .. import Colors
+from .base import ProgressBar
 
 
 class MultiProgressBar:

@@ -1,9 +1,11 @@
 """Pytest configuration and shared fixtures."""
 
-import pytest
 import sys
 from pathlib import Path
-from tests.fixtures.sample_data import SAMPLE_TEXT, SAMPLE_COLORS, SAMPLE_TABLE_DATA
+
+import pytest
+
+from tests.fixtures.sample_data import SAMPLE_COLORS, SAMPLE_TABLE_DATA, SAMPLE_TEXT
 
 # Add project root to path
 project_root = Path(__file__).parent.parent

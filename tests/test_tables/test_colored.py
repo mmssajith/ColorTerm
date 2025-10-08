@@ -3,6 +3,7 @@
 import unittest
 from io import StringIO
 from unittest.mock import patch
+
 from colorterminal import ColoredTable, Colors
 
 
@@ -21,7 +22,7 @@ class TestColoredTable(unittest.TestCase):
         table = ColoredTable(
             headers=["Col1", "Col2"],
             style="double",
-            alternating_colors=[Colors.GREEN, Colors.BLUE]
+            alternating_colors=[Colors.GREEN, Colors.BLUE],
         )
         self.assertEqual(table.style, "double")
         self.assertEqual(table.alternating_colors, [Colors.GREEN, Colors.BLUE])
@@ -59,7 +60,7 @@ class TestColoredTable(unittest.TestCase):
         self.assertIsNotNone(table.alternating_colors)
         self.assertEqual(len(table.alternating_colors), 2)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_colored_table_display(self, mock_stdout):
         """Test colored table display."""
         table = ColoredTable(headers=["Name", "Age"])
@@ -70,12 +71,11 @@ class TestColoredTable(unittest.TestCase):
         self.assertIn("Alice", output)
         self.assertIn(Colors.GREEN, output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_alternating_colors_applied(self, mock_stdout):
         """Test that alternating colors are applied."""
         table = ColoredTable(
-            headers=["Name"],
-            alternating_colors=[Colors.RED, Colors.BLUE]
+            headers=["Name"], alternating_colors=[Colors.RED, Colors.BLUE]
         )
         table.add_row(["Alice"])
         table.add_row(["Bob"])
@@ -86,12 +86,11 @@ class TestColoredTable(unittest.TestCase):
         self.assertIn(Colors.RED, output)
         self.assertIn(Colors.BLUE, output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_explicit_color_overrides_alternating(self, mock_stdout):
         """Test that explicit row color overrides alternating."""
         table = ColoredTable(
-            headers=["Name"],
-            alternating_colors=[Colors.RED, Colors.BLUE]
+            headers=["Name"], alternating_colors=[Colors.RED, Colors.BLUE]
         )
         table.add_row(["Alice"], color=Colors.GREEN)
         table.display()
@@ -99,7 +98,7 @@ class TestColoredTable(unittest.TestCase):
         # Should contain the explicit color
         self.assertIn(Colors.GREEN, output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_empty_colored_table(self, mock_stdout):
         """Test displaying empty colored table."""
         table = ColoredTable()
@@ -107,7 +106,7 @@ class TestColoredTable(unittest.TestCase):
         output = mock_stdout.getvalue()
         self.assertEqual(output, "")
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_colored_table_with_multiple_styles(self, mock_stdout):
         """Test colored table with different border styles."""
         for style in ["light", "heavy", "double", "rounded", "ascii"]:
@@ -123,15 +122,15 @@ class TestColoredTable(unittest.TestCase):
     def test_inherits_from_table(self):
         """Test that ColoredTable inherits from Table."""
         from colorterminal.tables.base import Table
+
         table = ColoredTable(headers=["Col1"])
         self.assertIsInstance(table, Table)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_mixed_colored_and_default_rows(self, mock_stdout):
         """Test mixing explicitly colored and default rows."""
         table = ColoredTable(
-            headers=["Name"],
-            alternating_colors=[None, Colors.BRIGHT_BLACK]
+            headers=["Name"], alternating_colors=[None, Colors.BRIGHT_BLACK]
         )
         table.add_row(["Alice"], color=Colors.RED)
         table.add_row(["Bob"])  # Will use alternating color

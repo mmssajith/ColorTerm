@@ -2,8 +2,8 @@
 ColoredTable class with row coloring support.
 """
 
-from .base import Table
 from .. import Colors
+from .base import Table
 
 
 class ColoredTable(Table):

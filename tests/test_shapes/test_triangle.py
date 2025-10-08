@@ -3,7 +3,8 @@
 import unittest
 from io import StringIO
 from unittest.mock import patch
-from colorterminal import Triangle, Colors
+
+from colorterminal import Colors, Triangle
 
 
 class TestTriangle(unittest.TestCase):
@@ -25,7 +26,7 @@ class TestTriangle(unittest.TestCase):
             orientation="down",
             color_code=Colors.MAGENTA,
             fill_char="*",
-            border_char="o"
+            border_char="o",
         )
         self.assertEqual(triangle.height, 10)
         self.assertFalse(triangle.filled)
@@ -34,40 +35,40 @@ class TestTriangle(unittest.TestCase):
         self.assertEqual(triangle.fill_char, "*")
         self.assertEqual(triangle.border_char, "o")
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_up_triangle_rendering(self, mock_stdout):
         """Test upward-pointing triangle rendering."""
         triangle = Triangle(height=5, orientation="up")
         triangle.draw()
         output = mock_stdout.getvalue()
-        lines = output.strip().split('\n')
+        lines = output.strip().split("\n")
         self.assertEqual(len(lines), 5)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_down_triangle_rendering(self, mock_stdout):
         """Test downward-pointing triangle rendering."""
         triangle = Triangle(height=5, orientation="down")
         triangle.draw()
         output = mock_stdout.getvalue()
-        lines = output.strip().split('\n')
+        lines = output.strip().split("\n")
         self.assertEqual(len(lines), 5)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_left_triangle_rendering(self, mock_stdout):
         """Test left-pointing triangle rendering."""
         triangle = Triangle(height=5, orientation="left")
         triangle.draw()
         output = mock_stdout.getvalue()
-        lines = output.strip().split('\n')
+        lines = output.strip().split("\n")
         self.assertEqual(len(lines), 5)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_right_triangle_rendering(self, mock_stdout):
         """Test right-pointing triangle rendering."""
         triangle = Triangle(height=5, orientation="right")
         triangle.draw()
         output = mock_stdout.getvalue()
-        lines = output.strip().split('\n')
+        lines = output.strip().split("\n")
         self.assertEqual(len(lines), 5)
 
     def test_invalid_orientation_raises_error(self):
@@ -76,7 +77,7 @@ class TestTriangle(unittest.TestCase):
         with self.assertRaises(ValueError):
             triangle.draw()
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_filled_triangle(self, mock_stdout):
         """Test filled triangle has fill characters."""
         triangle = Triangle(height=5, filled=True, fill_char="*")
@@ -84,7 +85,7 @@ class TestTriangle(unittest.TestCase):
         output = mock_stdout.getvalue()
         self.assertIn("*", output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_bordered_triangle(self, mock_stdout):
         """Test bordered triangle has border characters."""
         triangle = Triangle(height=5, filled=False, border_char="o")
@@ -92,7 +93,7 @@ class TestTriangle(unittest.TestCase):
         output = mock_stdout.getvalue()
         self.assertIn("o", output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_color_applied(self, mock_stdout):
         """Test that color code is applied."""
         triangle = Triangle(height=5, color_code=Colors.GREEN)

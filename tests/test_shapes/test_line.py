@@ -3,7 +3,8 @@
 import unittest
 from io import StringIO
 from unittest.mock import patch
-from colorterminal import Line, Colors
+
+from colorterminal import Colors, Line
 
 
 class TestLine(unittest.TestCase):
@@ -18,13 +19,15 @@ class TestLine(unittest.TestCase):
 
     def test_custom_line_creation(self):
         """Test line creation with custom parameters."""
-        line = Line(length=20, orientation="vertical", color_code=Colors.RED, fill_char="*")
+        line = Line(
+            length=20, orientation="vertical", color_code=Colors.RED, fill_char="*"
+        )
         self.assertEqual(line.length, 20)
         self.assertEqual(line.orientation, "vertical")
         self.assertEqual(line.color_code, Colors.RED)
         self.assertEqual(line.fill_char, "*")
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_horizontal_line_rendering(self, mock_stdout):
         """Test horizontal line rendering."""
         line = Line(length=10, orientation="horizontal", fill_char="=")
@@ -33,14 +36,14 @@ class TestLine(unittest.TestCase):
         self.assertIn("=", output)
         self.assertIn(Colors.RESET, output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_vertical_line_rendering(self, mock_stdout):
         """Test vertical line rendering."""
         line = Line(length=5, orientation="vertical", fill_char="|")
         line.draw()
         output = mock_stdout.getvalue()
         # Should have 5 lines
-        lines = output.strip().split('\n')
+        lines = output.strip().split("\n")
         self.assertEqual(len(lines), 5)
         self.assertIn("|", output)
 
@@ -50,7 +53,7 @@ class TestLine(unittest.TestCase):
         with self.assertRaises(ValueError):
             line.draw()
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_color_applied(self, mock_stdout):
         """Test that color code is applied."""
         line = Line(length=5, color_code=Colors.GREEN)

@@ -2,8 +2,8 @@
 Triangle shape for drawing triangles in the terminal.
 """
 
-from .base import Shape
 from .. import Colors, colorize
+from .base import Shape
 
 
 class Triangle(Shape):

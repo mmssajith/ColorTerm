@@ -4,6 +4,7 @@ AnimatedProgressBar class for animated progress bars.
 
 import sys
 import time
+
 from .base import ProgressBar
 
 

@@ -2,13 +2,14 @@
 """Example demonstrating progress bars."""
 
 import time
+
 from colorterminal import (
-    ProgressBar,
     AnimatedProgressBar,
-    SpinnerProgressBar,
-    MultiProgressBar,
     Colors,
-    SemanticPrinter
+    MultiProgressBar,
+    ProgressBar,
+    SemanticPrinter,
+    SpinnerProgressBar,
 )
 
 
@@ -29,11 +30,7 @@ def main():
 
     # Spinner progress bar
     print("Spinner Progress Bar:")
-    bar = SpinnerProgressBar(
-        total=100,
-        spinner_style="dots",
-        color_code=Colors.CYAN
-    )
+    bar = SpinnerProgressBar(total=100, spinner_style="dots", color_code=Colors.CYAN)
     for i in range(0, 101, 10):
         bar.update(i)
         time.sleep(0.1)

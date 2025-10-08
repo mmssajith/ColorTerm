@@ -2,8 +2,8 @@
 Rectangle shape for drawing rectangles in the terminal.
 """
 
-from .base import Shape
 from .. import Colors, colorize
+from .base import Shape
 
 
 class Rectangle(Shape):

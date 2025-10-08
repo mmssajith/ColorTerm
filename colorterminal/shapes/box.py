@@ -2,8 +2,8 @@
 Box shape using Unicode box-drawing characters for professional-looking boxes.
 """
 
-from .base import Shape
 from .. import Colors, colorize
+from .base import Shape
 
 
 class Box(Shape):

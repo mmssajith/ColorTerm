@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Example demonstrating shape drawing."""
 
-from colorterminal import Line, Rectangle, Circle, Triangle, Diamond, Box, Colors
+from colorterminal import Box, Circle, Colors, Diamond, Line, Rectangle, Triangle
 
 
 def main():
@@ -44,7 +44,9 @@ def main():
     Box(width=30, height=3, title="Title", color_code=Colors.BRIGHT_CYAN).draw()
 
     print("\nBox (Double Style):")
-    Box(width=30, height=3, style="double", title="Info", color_code=Colors.BRIGHT_GREEN).draw()
+    Box(
+        width=30, height=3, style="double", title="Info", color_code=Colors.BRIGHT_GREEN
+    ).draw()
 
     print()
 

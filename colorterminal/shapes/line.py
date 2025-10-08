@@ -2,8 +2,8 @@
 Line shape for drawing horizontal and vertical lines in the terminal.
 """
 
-from .base import Shape
 from .. import Colors, colorize
+from .base import Shape
 
 
 class Line(Shape):

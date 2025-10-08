@@ -231,7 +231,7 @@ class Table:
             )
 
         # Data rows
-        for i, row in enumerate(self.rows):
+        for row in self.rows:
             # Ensure row has same number of columns as headers
             row_data = row + [""] * (len(self.headers) - len(row))
             self._draw_row(row_data)

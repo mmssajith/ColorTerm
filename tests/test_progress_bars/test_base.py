@@ -3,7 +3,8 @@
 import unittest
 from io import StringIO
 from unittest.mock import patch
-from colorterminal import ProgressBar, Colors
+
+from colorterminal import Colors, ProgressBar
 
 
 class TestProgressBar(unittest.TestCase):
@@ -49,7 +50,7 @@ class TestProgressBar(unittest.TestCase):
         bar.complete()
         self.assertEqual(bar.current, 100)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_display_output(self, mock_stdout):
         """Test progress bar display output."""
         bar = ProgressBar(total=100, width=10, fill_char="█", empty_char="░")
@@ -59,7 +60,7 @@ class TestProgressBar(unittest.TestCase):
         self.assertIn("░", output)
         self.assertIn("50.00%", output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_display_no_percentage(self, mock_stdout):
         """Test display without percentage."""
         bar = ProgressBar(total=100, show_percentage=False)
@@ -67,7 +68,7 @@ class TestProgressBar(unittest.TestCase):
         output = mock_stdout.getvalue()
         self.assertNotIn("%", output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_prefix_suffix(self, mock_stdout):
         """Test prefix and suffix display."""
         bar = ProgressBar(total=100, prefix="Loading: ", suffix=" Done")
@@ -76,7 +77,7 @@ class TestProgressBar(unittest.TestCase):
         self.assertIn("Loading:", output)
         self.assertIn("Done", output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_color_code_applied(self, mock_stdout):
         """Test that color code is applied."""
         bar = ProgressBar(total=100, color_code=Colors.BLUE)
@@ -90,7 +91,7 @@ class TestProgressBar(unittest.TestCase):
         bar = ProgressBar(total=0)
         bar.display()  # Should not raise exception
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_full_progress(self, mock_stdout):
         """Test 100% progress display."""
         bar = ProgressBar(total=100, width=10)

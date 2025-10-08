@@ -3,6 +3,7 @@
 import unittest
 from io import StringIO
 from unittest.mock import patch
+
 from colorterminal import Circle, Colors
 
 
@@ -23,7 +24,7 @@ class TestCircle(unittest.TestCase):
             filled=False,
             color_code=Colors.CYAN,
             fill_char="O",
-            border_char="*"
+            border_char="*",
         )
         self.assertEqual(circle.radius, 10)
         self.assertFalse(circle.filled)
@@ -31,7 +32,7 @@ class TestCircle(unittest.TestCase):
         self.assertEqual(circle.fill_char, "O")
         self.assertEqual(circle.border_char, "*")
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_filled_circle_rendering(self, mock_stdout):
         """Test filled circle rendering."""
         circle = Circle(radius=5, filled=True)
@@ -39,10 +40,10 @@ class TestCircle(unittest.TestCase):
         output = mock_stdout.getvalue()
         # Should produce output with filled characters
         self.assertGreater(len(output), 0)
-        lines = [line for line in output.split('\n') if line.strip()]
+        lines = [line for line in output.split("\n") if line.strip()]
         self.assertGreater(len(lines), 0)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_bordered_circle_rendering(self, mock_stdout):
         """Test bordered circle rendering."""
         circle = Circle(radius=5, filled=False, border_char="*")
@@ -50,7 +51,7 @@ class TestCircle(unittest.TestCase):
         output = mock_stdout.getvalue()
         self.assertIn("*", output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_small_circle(self, mock_stdout):
         """Test small circle rendering."""
         circle = Circle(radius=2, filled=True)
@@ -58,7 +59,7 @@ class TestCircle(unittest.TestCase):
         output = mock_stdout.getvalue()
         self.assertGreater(len(output), 0)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_color_applied(self, mock_stdout):
         """Test that color code is applied."""
         circle = Circle(radius=5, color_code=Colors.YELLOW)
@@ -67,12 +68,12 @@ class TestCircle(unittest.TestCase):
         self.assertIn(Colors.YELLOW, output)
         self.assertIn(Colors.RESET, output)
 
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("sys.stdout", new_callable=StringIO)
     def test_large_circle(self, mock_stdout):
         """Test large circle rendering."""
         circle = Circle(radius=10, filled=True)
         circle.draw()
         output = mock_stdout.getvalue()
-        lines = [line for line in output.split('\n') if line.strip()]
+        lines = [line for line in output.split("\n") if line.strip()]
         # Larger circle should have more lines
         self.assertGreater(len(lines), 10)
