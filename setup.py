@@ -6,10 +6,10 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="terminal-colorize",
-    version="1.0.1",
+    version="2.0.0",
     author="Mmohamed Sajith",
     author_email="mmssajith@gmail.com",
-    description="A simple library for colored terminal output using ANSI escape codes",
+    description="A comprehensive library for colored terminal output, progress bars, tables, and shapes using ANSI escape codes",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/mmssajith/colorterm",
